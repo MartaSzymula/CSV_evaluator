@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-# from django.db.models import Count
-
-# from .models import Team, Player
+from .models import ValidationDB
 
 
 class HomeView(View):
     def get(self, request):
+        questions = ValidationDB.objects.all()
+
+        context = {
+            'questions' : questions
+        }
 
 
-        return render(request, 'home.html')
+        return render(request, 'home.html', context)

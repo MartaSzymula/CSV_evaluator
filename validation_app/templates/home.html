@@ -11,7 +11,12 @@
       <div class="col-sm-12">
         <h2 class="display-3">Welcome to the Validation App! </h2>
         <div class="jumbotron">
-          <h2>Question</h2>
+          {% for question in questions %}
+
+          <h2>{{question.synonym}}</h2>
+          <h3>{{question.tag}}</h3>
+
+          {% endfor %}
 
             <button type="button" class="btn btn-primary btn-lg">Yes</button>
 
