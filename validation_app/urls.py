@@ -3,6 +3,4 @@ from . import views
 
 urlpatterns = [
     path('', views.HomeView.as_view()),
-    # path('validation/', views.ValidationView.as_view()),
-
 ]
