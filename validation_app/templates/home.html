@@ -20,9 +20,9 @@
             {% csrf_token %}
             <input type="hidden" name="question_id" value={{question.id}}>
             <input type="submit" name="vote" value="Yes" class="btn btn-primary btn-lg">
-          </form>
+            <input type="submit" name="vote" value="No" class="btn btn-secondary btn-lg">
 
-            <button type="button" class="btn btn-secondary btn-lg">No</button>
+          </form>
 
         </div>
 
