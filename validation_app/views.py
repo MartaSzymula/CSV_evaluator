@@ -1,17 +1,26 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from .models import ValidationDB
-# from django.contrib import messages
-
-import csv, random
+from django.http import HttpResponse
+import csv
 
 
 class HomeView(View):
     def get(self, request):
+
+        with open('validation_app\\static\\base_file.csv', 'r') as f:
+            reader = csv.reader(f)
+            next(reader)
+
+            for row in reader:
+                _, created = ValidationDB.objects.update_or_create(
+                synonym = row[0],
+                tag = row[1],
+                answer = row[2]
+                )
+                print(row)
+
         question = ValidationDB.objects.filter(answer="").first()
-
-        # for question in questions:
-
 
         context = {
             'question' : question
@@ -34,15 +43,16 @@ class HomeView(View):
 
 
         return redirect('/')
+    #
 
-    def CSVimport(request):
-        with open('/fixtures/base_file.csv') as f:
-            reader = csv.reader(f)
-        for column in reader:
-            _, created = ValidationDB.objects.get_or_create(
-            synonym = column[0],
-            tag = column[1],
-            )
+    def CSVExport(request):
 
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="output_file.csv"'
 
-            return render(request)
+        writer = csv.writer(response)
+
+        writer.writerow(['First row', ValidationDB.objects.all()])
+        writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
+
+        return response
