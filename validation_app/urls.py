@@ -3,4 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.HomeView.as_view()),
+    path('csvdownload/', views.DownloadView.as_view()),
+
 ]
