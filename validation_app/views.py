@@ -8,17 +8,6 @@ import csv
 class HomeView(View):
     def get(self, request):
 
-        # with open('validation_app\\static\\base_file.csv', 'r') as f:
-        #     reader = csv.reader(f)
-        #     next(reader)
-        #
-        #     for row in reader:
-        #         _, created = ValidationDB.objects.update_or_create(
-        #         synonym = row[0],
-        #         tag = row[1],
-        #         answer = row[2]
-        #         )
-        #         print(row)
 
         question = ValidationDB.objects.filter(answer="").first()
 
@@ -43,7 +32,22 @@ class HomeView(View):
 
 
         return redirect('/')
-    #
+
+class UpdateView(View):
+
+    def post(self, request):
+        with open('validation_app\\static\\base_file.csv', 'r') as f:
+            reader = csv.reader(f)
+            next(reader)
+
+            for row in reader:
+                _, created = ValidationDB.objects.update_or_create(
+                synonym = row[0],
+                tag = row[1],
+                answer = row[2]
+                )
+
+            return redirect('/')
 
 class DownloadView(View):
 

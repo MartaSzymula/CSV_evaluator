@@ -30,9 +30,17 @@
           <form class="" action="/csvdownload/" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <input name='update' type="submit" class="btn btn-outline-primary" value="Update data">
               <input name='download' type="submit" class="btn btn-outline-dark" value="Download CSV file">
             </div>
+          </form>
+
+          <form class="" action="/csvupdate/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <input name='update' type="submit" class="btn btn-outline-primary" value="Update data">
+            </div>
+          </form>
+
         </div>
       </div>
 
