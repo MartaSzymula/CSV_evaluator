@@ -18,16 +18,14 @@ class HomeView(View):
 
         return render(request, 'home.html', context)
 
+class AnswerView(View):
     def post(self, request):
         # question = ValidationDB.objects.get(id=id)
 
         id = request.POST.get('question_id')
 
         answer = request.POST.get('vote')
-        #
-        # question.update(answer=answer)
-        print(id)
-        print(answer)
+
         ValidationDB.objects.filter(id=id).update(answer=answer)
 
 
