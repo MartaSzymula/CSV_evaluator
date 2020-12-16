@@ -39,11 +39,14 @@ class UpdateView(View):
             next(reader)
 
             for row in reader:
-                _, created = ValidationDB.objects.update_or_create(
-                synonym = row[0],
-                tag = row[1],
-                answer = row[2]
-                )
+                try:
+                    ValidationDB.objects.get(synonym=row[0])
+                except ValidationDB.DoesNotExist:
+                    _, created = ValidationDB.objects.update_or_create(
+                    synonym = row[0],
+                    tag = row[1],
+                    answer = row[2]
+                    )
 
             return redirect('/')
 
