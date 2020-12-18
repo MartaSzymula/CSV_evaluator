@@ -1,6 +1,7 @@
 from django.db import models
 
-class ValidationDB(models.Model):
+class ValidationModel(models.Model):
     synonym = models.CharField(max_length=255)
     tag = models.CharField(max_length=255)
-    answer = models.CharField(max_length=4)
+    answer = models.BooleanField(null=True)
+    comment = models.CharField(max_length=255)

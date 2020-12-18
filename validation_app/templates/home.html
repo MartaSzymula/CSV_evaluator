@@ -9,38 +9,50 @@
   <body>
     <div class="container">
       <div class="col-sm-12">
-        <h2 class="display-3">Welcome to the Validation App! </h2>
-        <div class="jumbotron">
 
-          <h2>{{question.synonym}}</h2>
-          <h3>{{question.tag}}</h3>
-
-
-          <form class="" action="/submitanswer/" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="question_id" value={{question.id}}>
-            <input type="submit" name="vote" value="Yes" class="btn btn-success">
-            <input type="submit" name="vote" value="No" class="btn btn-danger">
-
-          </form>
-
-        </div>
+        <h2 class="display-3">Welcome to the Validation App!</h2>
 
         <div class="jumbotron">
-          <form class="" action="/csvdownload/" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-              <input name='download' type="submit" class="btn btn-outline-dark" value="Download CSV file">
-            </div>
-          </form>
 
-          <form class="" action="/csvupdate/" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-              <input name='update' type="submit" class="btn btn-outline-primary" value="Update data">
-            </div>
-          </form>
+          <div class="text-center">
+            <div class="p-3">
+                <h2>{{question.synonym}}</h2>
+                <h3>{{question.tag}}</h3>
 
+              <form class="text-center" action="/submitanswer/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="question_id" value={{question.id}}>
+                <input type="submit" name="vote" value="True" class="btn btn-success btn-lg">
+                <input type="submit" name="vote" value="False" class="btn btn-danger btn-lg">
+
+                <input type="text" value="" name="comment" value="" placeholder="Comment">
+
+              </form>
+            </div>
+
+
+            <div class="p-4">
+              <div class="btn-group">
+
+                <form class="mx-2" action="/csvdownload/" method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input name='download' type="submit" class="btn btn-outline-dark" value="Download CSV file">
+                  </div>
+                </form>
+
+                <form class="mx-2" action="/csvupdate/" method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input name='update' type="submit" class="btn btn-outline-primary" value="Update data">
+                  </label>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
